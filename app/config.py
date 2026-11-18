@@ -1,18 +1,19 @@
 from functools import lru_cache
 
+from pydantic import SecretStr
 from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
 
     #LLM Configuration
-    openai_api_key: str
+    openai_api_key: SecretStr
     primary_model: str = "gpt-4o-mini"
     fallback_model: str = "gpt-4o-mini"  #Youc can change fallback model
 
     #LangSmith
     langchain_tracing_v2: bool = True
-    langchain_api_key: str = ""
+    langchain_api_key: SecretStr = SecretStr("")
     langchain_project: str = "production-api"
 
     #Application
